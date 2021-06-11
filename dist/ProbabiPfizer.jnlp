@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ProbabiPfizer.jar" size="22467" download="eager" />
+    <jar href="ProbabiPfizer.jar" size="30374" download="eager" />
+    <jar href="lib/controlsfx-11.1.0.jar" size="1404130" download="eager" />
     <jar href="lib/jfoenix-8.0.10.jar" size="2710207" download="eager" />
     <jar href="lib/mysql-connector-java-8.0.25.jar" size="2428320" download="eager" />
   </resources>

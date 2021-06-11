@@ -8,12 +8,19 @@ package probabiPfizer;
 import base.Conexion;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import sesion.Cliente;
 
 /**
@@ -58,10 +65,17 @@ public class InicioController implements Initializable {
             String genero = filtro.equals(MASCULINO) ? "M" : "F";
             try {
                 int edad = Integer.parseInt(stringEdad);
-                Cliente.almacenarDatos(obtenerRangoEdad(edad), genero, "");
+                Cliente.almacenarDatos(genero, obtenerRangoEdad(edad), "");
                 System.out.println(Cliente.getGenero() + "\n" + Cliente.getEdad() + "\n" + Cliente.getSintoma());
+                
+                Stage stageActual = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                FXMLLoader loaderResultados = new FXMLLoader(getClass().getResource("FXMLResultados.fxml"));
+                Scene sceneResultados = new Scene(loaderResultados.load());
+                stageActual.setScene(sceneResultados);
             } catch (NumberFormatException e) {
                 DialogosFX.mostrarError("ProbabiPfizer", "Digite un número en el campo de la edad");
+            } catch (IOException ex) {
+                Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         } else {
@@ -71,7 +85,7 @@ public class InicioController implements Initializable {
     }
 
     /*
-    int edad = Integer.parseInt(txtEdad.getText());
+        int edad = Integer.parseInt(txtEdad.getText());
         String sexo = filtro.equals(MASCULINO) ? "M" : "F";
         System.out.println("edad: " + obtenerRangoEdad(edad));
         System.out.println("genero: " + sexo);

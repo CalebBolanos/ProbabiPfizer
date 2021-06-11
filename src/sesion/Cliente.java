@@ -44,6 +44,10 @@ public class Cliente {
         Cliente.sintoma = sintoma;
     }
     
-    
+    public static void limpiarDatos(){
+        Cliente.genero = "";
+        Cliente.edad = "";
+        Cliente.sintoma = "";
+    }
     
 }
